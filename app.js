@@ -1,6 +1,6 @@
 $(document).ready(function () { //readied the document 
 
-    $("btnSubmit").attr("disabled", true);//set the submit button as disabled
+    $("#btnSubmit").attr("disabled", true);//set the submit button as disabled
     $("<ul></ul>").appendTo("body");
 
     $("#btnSubmit").click(function (event) {//click function
@@ -8,25 +8,26 @@ $(document).ready(function () { //readied the document
         let inputText = $("#inputText").val();// named the textcontent of the input "inputText"
         alert(inputText);//will alert the textcontent when button clicked
         $("<div></div>").appendTo("body");//created a div and connected to body
-        $("<li>" + inputText + "</li>").appendTo("ul");
+        let li= $("<li>" + inputText + "</li>")
+        $("ul").append(li);
 
-        $("li").click(function(){
-            var random = "rgb(" + (Math.floor(Math.random()*256)) + "," + (Math.floor(Math.random()*256)) + ","+ (Math.floor(Math.random()*256))+")"
-             $("li").css("color",random); //I feel like there is a better way to do this...
-        $("li").dblclick (function(){
-            $("li").remove();
-        }
-        )
+        li.click(function () {
+            var random = "rgb(" + (Math.floor(Math.random() * 256)) + "," + (Math.floor(Math.random() * 256)) + "," + (Math.floor(Math.random() * 256)) + ")"
+            li.css("color", random); //I feel like there is a better way to do this...
+            li.dblclick(function () {
+                li.remove();
+            })
         })
     })
 
 
     $("body").keydown(function () {//keydown function- when something is typed in the input box the following occurs:
-        if ($(inputText === "")) { //if the inputText is nothing then the button stays disabled
-            $("btnSubmit").prop("disabled", true)
+        let inputText = $("#inputText").val();// named the textcontent of the input "inputText"
+        if (inputText === "") { //if the inputText is nothing then the button stays disabled
+            $("#btnSubmit").prop("disabled", true)
         }
         else { //if the inputText is something, then the button is enabled
-            $("btnSubmit").prop("disabled", false);
+            $("#btnSubmit").prop("disabled", false);
         }
     })
 
