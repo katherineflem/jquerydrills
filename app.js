@@ -1,31 +1,38 @@
-$(document).ready(function () {
+$(document).ready(function () { //readied the document 
 
-    //made the following happen when button is clicked
+    $("btnSubmit").attr("disabled", true);//set the submit button as disabled
+    $("<ul></ul>").appendTo("body");
 
-    $("#btnSubmit").click(function () {
-        $("btnSubmit").prop("disabled", true);
-            if ($("inputText") === "") {
-                $("btnSubmit").prop("disabled", true)
-            } else {
-                 alert($("#inputText").val());
-                 $("<div></div>").appendTo("body");
-                 $("<h2></h2>").appendTo("div");
-                 ("h2").append($("#inputText").val());
+    $("#btnSubmit").click(function (event) {//click function
+        event.preventDefault(); //made it so the page does not default to refresh after the form is submitted
+        let inputText = $("#inputText").val();// named the textcontent of the input "inputText"
+        alert(inputText);//will alert the textcontent when button clicked
+        $("<div></div>").appendTo("body");//created a div and connected to body
+        $("<li>" + inputText + "</li>").appendTo("ul");
 
+        $("li").click(function(){
+            var random = "rgb(" + (Math.floor(Math.random()*256)) + "," + (Math.floor(Math.random()*256)) + ","+ (Math.floor(Math.random()*256))+")"
+             $("li").css("color",random); //I feel like there is a better way to do this...
+        $("li").dblclick (function(){
+            $("li").remove();
         }
-     $("<ul></ul>").appendTo("body");
-     let text = $("#inputText").val()
-     $("ul").append("<li></li")
+        )
+        })
+    })
 
-$("h2").mouseover(function(){
-$("h2").css({
-    "background-color": "purple",
-    "border-radius": "5px"
 
-})
-})
-    });
+    $("body").keydown(function () {//keydown function- when something is typed in the input box the following occurs:
+        if ($(inputText === "")) { //if the inputText is nothing then the button stays disabled
+            $("btnSubmit").prop("disabled", true)
+        }
+        else { //if the inputText is something, then the button is enabled
+            $("btnSubmit").prop("disabled", false);
+        }
+    })
 
+    //$("h2").hover(function(){//created a mouseover function defining changes to the heading  
+    //$("h2").css({
+    //"background-color": "purple",
+    //"border-radius": "5px" })
 
 });
-
